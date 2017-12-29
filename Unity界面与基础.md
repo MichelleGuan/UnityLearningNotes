@@ -1,4 +1,4 @@
-﻿#Unity界面与基础
+# Unity界面与基础
 ##简介：
   打开Unity后，首先调节右侧layout,到如下布局模式。
 ![布局][1]
@@ -10,7 +10,7 @@
 - [Unity圣典中文版](http://www.ceeger.com/Manual/)
 - [腾讯Unity官方英文视频，不需要梯子](http://v.qq.com/vplus/1e710e7fb0638396abe3c6c6aff3832c)
 
-##基本概念：
+## 基本概念：
 1.	Unity3D坐标系的方向是从2D扩展的，因此不是常用的坐标系。XY与2D模式一样，Z轴向屏幕内侧扩展。
 2.	左侧是global coordinate system（数学坐标系）
  右侧是local coordinate system（轴心坐标系）
@@ -21,7 +21,7 @@ Unity每个对象都有自己的轴心，组合也有轴心。可以选择绝对
 元素显示层级和文件系统的顺序是对应的，想要把内容上移一层只需要在文件系统插入到前面。
 Hierarchy feels like a DOM tree; you can control children elements by select parent node and transform it.
 
-##界面内容和快捷键：
+## 界面内容和快捷键：
   在Unity中，大多数的3D移动可以通过按住鼠标右键WASD来完成。再具体移动一个物体或者调整其大小的时候。尽量按照XYZ方向改变，最后调整角度。任意拖动后再恢复位置就会变得麻烦，改变角度后XYZ方向都会改变，不好移动位置。任何错误操作都可以通过ctrl+z来撤回，调试尽量使用播放模式，这样结束播放的时候，你所有操作都会归零。最后，具体调试数值的时候没必要一个个输入，鼠标在数值名字上按住左右滑动就可以改变数字。
 1.	界面右上方的操作工具（拖拽 移动 角度 大小 2D缩放）  对应快捷键QWERT
 The scene view tool bar. Corresponding keys: Q W E R T
