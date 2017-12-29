@@ -1,11 +1,11 @@
-﻿#Unity UI
+# Unity UI
 
 ## 简介：
 Unity UI创建新项目的时候建议把主摄像机，背景，粒子系统等，用一个空对象装在一起拖到Projectd的Prefabs里,方便复用。UI界面需要各种与背景不同步的效果时，需要一个GUI摄像机。
 UI所有的内容都需要放置到canvas上面，可以创建多个canvas，不过一般情况下，一个就够了。如果只是需要不受canvas设置影响的新UI界面，可以把需要特殊Cavans设置的内容放入windows（空对象创建），来装载动画脚本等内容。
 这里的所有案例来自商店 **Unity Samples: UI**（由于Unity版本更新,案例里面有的写法不对,尤其是4个状态的按键动画,仿照不能完成的内容,文档均有提及）
  
-##1.	Canvas（画布）
+## 1.	Canvas（画布）
  ![canvas][1]
 Canvas group可以调节canvas所有元素的这三个值，避免每个组件勾选。
  ![Scale][2]
@@ -33,23 +33,23 @@ Scale定义对象的缩放系数，一般不要使用，因为会缩放包括字
 此外建议吧元素中心点（pivot）调节到锚点的同一个角，这样写位置的时候更清晰。
 如图，锚点和中心点都在左下角，就可以看到距离屏幕左下的距离。右图是不调节。
 ![left][8]  ![left][9] 
-##3.	Button（按键）
+## 3.	Button（按键）
  ![5.png](https://i.loli.net/2017/12/12/5a2f7f1930b8a.png)
 Interactable一般选中，代表该组件接受输入。Transtiton就是划过选中的变化，可以改变你颜色，也可以加入动画，Color Multiplier可以调节所有颜色的亮度，Fade Duration就是颜色改变的事件（过渡时间）。
 Button这里介绍两个关闭的绑定事件，GameObject.SetActive(关闭按钮），ActiveStateToggler.ToggleActive(开关控制）
 
-##4.	Event Trigger/Event System（事件触发器/事件系统）
+## 4.	Event Trigger/Event System（事件触发器/事件系统）
  ![6.png](https://i.loli.net/2017/12/12/5a2f7f1b764b3.png)
 大多数object都可以绑定事件，和DOM事件一样，可以选择包括鼠标键盘监听等一系列的事件直接操作。前面Runtime Only下面对应的是要触发的对象而不是绑定事件的对象，选择改变的具体时间后可以输入值。
 Event System在创建UI元素事的时候会自动创建，是GUI系统自带的事件管理系统，如果不小心删除或者项目没有带，可以自己在Hterarchy创建。
-##5.	Mask / Scroll Rect（遮罩/滚动区域）
+## 5.	Mask / Scroll Rect（遮罩/滚动区域）
  ![7.png](https://i.loli.net/2017/12/12/5a2f7f271d849.png)
   遮罩要写在父级元素里面，用于遮罩子元素。除了要添加mask组件外，还要添加image，作为遮罩材料。Image不需要选择，就会根据父元素形状裁剪，如果选择了就会裁剪成image遮罩的形状。
   Scroll Rect同样放在父级元素上，添加后可以自由拖动查看子元素图片。Content就是你要观看的内容背景。H/V还是横列纵列的意思。Movement type是选择移动方式，默认的elastic可以移动出背景图漏出主背景图，并有一个动画的弹性返回。Unrestricted拖到哪就是哪，clamped限制在子元素图片内拖动。
   加上inertia之后选择默认移动方式，拉出子元素图片弹回的时候有个动画的延迟，比较自然，下面可以调节速度。Scroll就是针对鼠标滚轮的敏感度了。下面可以添加scrollbar组
 件用来拉动。
 
-##6.	Slider（滑动条）
+## 6.	Slider（滑动条）
 ![8.png](https://i.loli.net/2017/12/12/5a2f7f27d9939.png)   
 Interactable如上所述代表可交互的，不勾选则会禁用slider。
 Slider的值在min value和max value之间变动，下面的value是初始的值，勾选whole value将只能在整数区间变换。
@@ -61,18 +61,18 @@ Direction允许你选择自己喜欢的滑动方向。
 注意：
 如果使用C#控制滑动,把Interactable关上，避免冲突。
 
-##7.	Scroll bar（封装好的滑动工具）
+## 7.	Scroll bar（封装好的滑动工具）
 Scroll Bar和上面的slider相似的内容这里不再赘述。
 滚动内容可以通过mask和scroll rect来实现
 ![10.png](https://i.loli.net/2017/12/12/5a2f7f2891ade.png)
 如果播放的时候滚动条消失或者出现在奇怪的位置上，基本上由于调整位置的时候出错，删掉了重新更改位置就可以解决问题。{一般使用Unity新带的自动布局（包括vertical group /horizontal group）容易出现，很简单的UI尽量自己去调整吧，官网对这个自动布局系统介绍的很简洁，出了问题也不知道是什么}
 
-##8.	Drop Down（下拉菜单）
+## 8.	Drop Down（下拉菜单）
 ![11.png](https://i.loli.net/2017/12/12/5a2f7f1d811bc.png)![12.png](https://i.loli.net/2017/12/12/5a2f7f1cce24d.png)
  
 第一个选项放在label里面，第二个放在Item下面的Item Label里面，都拉入上图的Text里面，Options改成对应的文字。增加选项只需要添加Option就可以了，菜单过长的时候使用搭配的scroll bar组件。
 
-##9.	Raw Image/Image（原始图片/图片）
+## 9.	Raw Image/Image（原始图片/图片）
 图片组件传入图片在source image上，材料在Material添加。图片组件可以作为拖拽区域覆盖在原来的UI上，需要透明只需要把Material换成天空盒子。
 未加工的图片，只为我们提供了修改UV的方法，除此之外都是继承自MaskableGraphic的方法。一般情况下使用image而不是使用它。这里举例一个用法：当需要使用RenderTexture透视背景的时候，使用Raw Image组件
 ![14.png](https://i.loli.net/2017/12/13/5a30ce4f765ec.png)![15.png](https://i.loli.net/2017/12/13/5a30cf55d0d49.png)
@@ -80,7 +80,7 @@ Scroll Bar和上面的slider相似的内容这里不再赘述。
 渲染贴图可以在Project创建，贴图内容为绑定摄像机的场景。
 ![15.png](https://i.loli.net/2017/12/13/5a30ce63c8acf.png) 
 
-##10.UI动画系统（官网案例状态机错误）
+## 10.UI动画系统（官网案例状态机错误）
 ![20.png](https://i.loli.net/2017/12/13/5a30f5fab2ef8.png)
 实现如图所示的动画：鼠标滑过每个字母块的时候字母块浮动，点击时固定浮动效果。（动画效果片段是导入的）
 首先在Project创建Animatior Controller控件，双击打开，在Animator进行动画状态机编写。
@@ -91,7 +91,7 @@ Scroll Bar和上面的slider相似的内容这里不再赘述。
 这里Preview Source state恒定指向entry进入后的默认状态，无法更改。
 注：这个键盘，使用Grid写的，只需要打开一个空对象，加入Grid Layout Group & Layout Element组件，他的按键子元素会自动排版在设定区域。记住写完一个带好动画的子元素后拖到Prefabs保存，就可以批量制造了。
 
-##11.UI摄像机/光源
+## 11.UI摄像机/光源
 ![19.png](https://i.loli.net/2017/12/13/5a30ead478dac.png)
 
 - 图片上最左侧的摄像机是GUI摄像机，中间的是主摄像机（Main Camera），右侧的是RTCamera，这个顺序和位置不重要，保证视图效果就可以了。相机重要的顺序参数是Depth，主摄像机一般设置为-1,UI层是0,依次叠加渲染顺序。图片左右侧图片是背景图，UI层背景图来自透视纹理与RT摄像机的共同作用。
