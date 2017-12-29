@@ -1,12 +1,7 @@
-#Unity Basic&GUI Coding
+# Unity Basic&GUI Coding
 ----------
-<style>
-pre,img{
-margin-left:30px;
-}
-</style>
 > 此文档是对官网2D游戏基础，编程基础的知识总结，以及自己写推箱子和GUI代码的经验
-###1.官网2D Game
+### 1.官网2D Game
 - 2D游戏的层级排序，可以直接用layer，点击layer--add layer--sortinglayer,就可以用下面的layer覆盖上面的，然后在具体sprite上选择sorting layer（可以与他所属layer不同）。同一layer上order大的覆盖小的。</br>
 <img src="https://i.loli.net/2017/12/20/5a3a1857870ad.png" alt="a.png" title="a.png"b height="150" />
 - 精灵图导入后选择mutiple自动分割，可以在sprite editor里调节具体属性。</br>
@@ -14,7 +9,7 @@ margin-left:30px;
 - 碰撞边界：Box Collider 2D(长方形)/circle Coliider 2D(圆形)/polygon collider 2D(不规则)，可以点击edit collider手动调节。注意材质可以添加physics material来添加摩擦系数和弹性。
 - 2D物理系统：Rigidbody2D,可以选择动态的，也可以选择Kinematic使物体不受重力系统影响单独使用脚本控制。减少重力影响调节Gravity Scale，减小质量调节mass,linear/angular drag是线性和角度阻力，使物理移动和旋转逐渐变慢。
 <img src="https://i.loli.net/2017/12/20/5a3a2979c20ce.png" alt="`}}_BT4VY7%LTP9F~8]_)A0.png" title="`}}_BT4VY7%LTP9F~8]_)A0.png" height="220" />
-###2.官网Scripting 初级
+### 2.官网Scripting 初级
 - 需要调节的值尽量使用public,运行脚本后仍旧可以调节，反复打开关闭脚本调节容易卡住。
 - Awake()最先执行代码组件不是enable的时候也执行，Start()在第一帧update执行，只能在代码组件enable后执行。Update()每帧更新，执行完一帧执行下一帧，尽量不要在这里获取值以及持续执行一些耗性能的API。FixUpdate()同样每一帧都更新，但是每一帧间隔是固定的，适用于相对耗性能的对象，如有物理系统的。
 - SetActive绑定在游戏对象上，该对象必须是勾选的状态，否则该脚本不会被执行。可以使用触发器解决这个问题，比如使用按钮的onclick绑定这个SetActive函数，点击触发激活。如果通过Find或类似方法寻找对象，对象也必须是被勾选的，因此通过其他非按钮对象把没勾选的对象激活不能用常规的方法，我在游戏里面是通过改变scale0到1实现的。enable方法只适用于灯光等组件，在每个组件的API里面会说明，大多数组件是不能使用enable开关的。需要注意的是，不勾选父元素,只有父元素的Actived是false，子元素的是true，父元素不显示是不能单独显示子元素的。
@@ -137,7 +132,7 @@ this.InvokeRepeating("setInterval", 2.0f, 1.0f);
         return dir;     
     }
 </code></pre>
-###3.官网Scripting 中级
+### 3.官网Scripting 中级
 - 属性get/set方法同C#，如public int Health{ get; set;}，myplayer.Health=100;
 - 三元操作符，如message = health > 0 ? "Player is Alive" : "Player is Dead";
 - 静态值，静态方法和静态类都是非常实用的，比如使用静态值计数敌人，使用所属class.静态值名字访问这个值，使用所属class.静态方法名，直接调用这个方法。需要注意的是静态类的本质，是一个抽象的密封类，所以不能被继承，也不能被实例化。 使用静态类的优点在于，编译器能够执行检查以确保不致偶然地添加实例成员，编译器将保证不会创建此类的实例。静态成员只被创建一次，所以静态成员只有一份，既静态变量的值是唯一的。成员需要被共享的时候，方法需要被反复调用的时候，就可以把这些成员定义为静态成员。在静态方法中，不能直接调用实例成员，因为静态方法被调用的时候，对象还有可能不存在。
